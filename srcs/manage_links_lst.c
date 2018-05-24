@@ -6,7 +6,7 @@
 /*   By: vmiachko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:31:37 by vmiachko          #+#    #+#             */
-/*   Updated: 2018/05/23 14:24:31 by vmiachko         ###   ########.fr       */
+/*   Updated: 2018/05/24 16:35:29 by vmiachko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_links		*links_list_new(t_rooms *room)
 
 	new = (t_links *)malloc(sizeof(t_links));
 	new->room = room;
-	new->closed = 0;
 	new->next = NULL;
 	return (new);
 }

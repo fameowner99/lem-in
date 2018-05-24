@@ -6,7 +6,7 @@
 /*   By: vmiachko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 13:35:32 by vmiachko          #+#    #+#             */
-/*   Updated: 2018/05/23 17:28:41 by vmiachko         ###   ########.fr       */
+/*   Updated: 2018/05/24 19:42:07 by vmiachko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct			s_rooms
 struct					s_links
 {
 	t_rooms				*room;
-	int					closed;
 	struct s_links		*next;
 }							;
 
@@ -82,6 +81,7 @@ typedef struct			s_union
 	t_container			*container;
 	t_rooms				*room;
 	t_ways				*q;
+	t_all_ways			*all;
 }						t_union;
 
 void					lem_in();
@@ -107,5 +107,10 @@ void					set_graph_level(t_rooms	*start, t_union *un);
 void					set_lvl(t_union *un);
 void					algorithm(t_union *un);
 t_rooms					*find_end_room(t_rooms *room);
+t_ways					*ways_list_push_front(t_ways *head, t_rooms *room);
+void					all_ways_list_push_back(t_all_ways *head, t_ways *way);
+t_all_ways				*all_ways_list_new(t_ways *way);
+int						check_link_start_end(t_union *un);
+
 
 #endif
