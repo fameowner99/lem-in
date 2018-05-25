@@ -6,7 +6,7 @@
 /*   By: vmiachko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:31:37 by vmiachko          #+#    #+#             */
-/*   Updated: 2018/05/24 16:35:29 by vmiachko         ###   ########.fr       */
+/*   Updated: 2018/05/25 15:04:44 by vmiachko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ t_ways		*ways_list_new(t_rooms *room)
 
 	new = (t_ways *)malloc(sizeof(t_ways));
 	new->room = room;
-	new->next = NULL;
+	new->empty = 1;
+	new->next = NULL;	
 	new->prev = NULL;
 	return (new);
 }

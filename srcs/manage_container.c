@@ -6,7 +6,7 @@
 /*   By: vmiachko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 15:40:58 by vmiachko          #+#    #+#             */
-/*   Updated: 2018/05/18 19:18:23 by vmiachko         ###   ########.fr       */
+/*   Updated: 2018/05/25 12:02:32 by vmiachko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,17 @@ void				clear_container(t_container *head)
 		head->next = NULL;
 		free(head);
 		head = tmp;
+	}
+}
+
+void				print_container(t_container *head)
+{
+	t_container		*tmp;
+
+	tmp = head;
+	while (tmp)
+	{
+		ft_printf(GREEN"%s\n"RESET, tmp->str);
+		tmp = tmp->next;
 	}
 }

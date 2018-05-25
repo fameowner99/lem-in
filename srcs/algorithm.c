@@ -6,7 +6,7 @@
 /*   By: vmiachko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 17:15:28 by vmiachko          #+#    #+#             */
-/*   Updated: 2018/05/24 19:50:24 by vmiachko         ###   ########.fr       */
+/*   Updated: 2018/05/25 17:56:58 by vmiachko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ t_ways      *find_way(t_rooms *cur_room)
     t_rooms *room;
     int     n;
     t_links *link;
- 
-    room = find_end_room(cur_room);
-    way = ways_list_new(room);
+	room = find_end_room(cur_room);
+	way = ways_list_new(room);
 	link = room->link;
     while(link)
     {
@@ -66,11 +65,11 @@ t_ways      *find_way(t_rooms *cur_room)
 			room = link->room;
 			link = room->link;
 			if (!room->start && !room->end)
-            	room->closed = 1;
-             way = ways_list_push_front(way, room);
-            if (room->start)
-                return  (way);
-        }
+            	room->closed = 1;	
+				way = ways_list_push_front(way, room);
+			if (room->start)
+				return  (way);
+		}
         else
             link = link->next;
     }
@@ -82,43 +81,36 @@ void    algorithm(t_union *un)
 	t_ways	*q_tmp;
 	t_ways *way;
 
+	way = NULL;
 	if (check_link_start_end(un))
 	{
-		way =  ways_list_new(find_start_room(un->room));
-		ways_list_push_back(way, find_end_room(un->room));
+		way =  ways_list_new(find_end_room(un->room));
+		way = ways_list_push_front(way, find_start_room(un->room));
 		un->all = all_ways_list_new(way);
 	}
 	else
 	{
-    set_lvl(un);
-    QUEUE = ways_list_new(find_start_room(un->room));
-	q_tmp = QUEUE;
-    set_graph_level(find_start_room(un->room), un);
-	way = find_way(un->room);
-	if (way)
-		un->all = all_ways_list_new(way);
-	set_lvl(un);
-	 QUEUE = ways_list_new(find_start_room(un->room));
-    set_graph_level(find_start_room(un->room), un);
-    while ((way = find_way(un->room)))
-	{	
 		set_lvl(un);
-	 QUEUE = ways_list_new(find_start_room(un->room));
-    set_graph_level(find_start_room(un->room), un);
-		all_ways_list_push_back(un->all, way);	
-	}
-	}
-	int i;
-	i = 1;
-	while (un->all)
-	{
-		ft_printf(RED"%i\n"RESET, i);
-		while (un->all->way)
+		QUEUE = ways_list_new(find_start_room(un->room));
+		q_tmp = QUEUE;	
+		set_graph_level(find_start_room(un->room), un);
+		way = find_way(un->room);
+		if (way)
+			un->all = all_ways_list_new(way);
+		while (way)
 		{
-			ft_printf(GREEN"%s\n"RESET, un->all->way->room->name);
-			un->all->way = un->all->way->next;
+			way = NULL;
+			set_lvl(un);
+			clear_lst_ways(q_tmp);
+			q_tmp = NULL;
+			QUEUE = ways_list_new(find_start_room(un->room));
+			q_tmp = QUEUE;	
+			set_graph_level(find_start_room(un->room), un);
+			way = find_way(un->room);
+			if (way)
+				all_ways_list_push_back(un->all, way);
 		}
-		un->all = un->all->next;
-		++i;
+		if (q_tmp)
+			clear_lst_ways(q_tmp);	
 	}
  }

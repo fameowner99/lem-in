@@ -6,7 +6,7 @@
 /*   By: vmiachko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:02:03 by vmiachko          #+#    #+#             */
-/*   Updated: 2018/05/23 17:26:20 by vmiachko         ###   ########.fr       */
+/*   Updated: 2018/05/25 15:04:08 by vmiachko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_all_ways		*all_ways_list_new(t_ways *way)
 
 	new = (t_all_ways*)malloc(sizeof(t_all_ways));
 	new->way = way;
+	new->len = 0;
 	new->next = NULL;
 	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: vmiachko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 13:35:32 by vmiachko          #+#    #+#             */
-/*   Updated: 2018/05/24 19:42:07 by vmiachko         ###   ########.fr       */
+/*   Updated: 2018/05/25 17:20:16 by vmiachko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct			s_container
 typedef struct			s_ways
 {
 	t_rooms				*room;
+	int					empty;
 	struct s_ways		*prev;
 	struct s_ways		*next;
 }						t_ways;
@@ -70,8 +71,16 @@ typedef struct			s_ways
 typedef struct			s_all_ways
 {
 	t_ways				*way;
+	int					len;
 	struct s_all_ways	*next;
 }						t_all_ways;
+
+typedef struct			s_ants
+{
+	int					n;
+	t_all_ways			*all;
+	t_ways				*curr_way;
+}						t_ants;
 
 typedef struct			s_union
 {
@@ -82,6 +91,7 @@ typedef struct			s_union
 	t_rooms				*room;
 	t_ways				*q;
 	t_all_ways			*all;
+	t_ants				*ant;
 }						t_union;
 
 void					lem_in();
@@ -111,6 +121,11 @@ t_ways					*ways_list_push_front(t_ways *head, t_rooms *room);
 void					all_ways_list_push_back(t_all_ways *head, t_ways *way);
 t_all_ways				*all_ways_list_new(t_ways *way);
 int						check_link_start_end(t_union *un);
-
+void					set_length_way(t_union *un);
+void					print_container(t_container *head);
+void					set_ants(t_union *un);
+void					set_link_ant(t_union *un);
+int						check_finish(t_union un);
+void					clear_lst_ways(t_ways *way);
 
 #endif

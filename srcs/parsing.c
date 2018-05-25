@@ -6,7 +6,7 @@
 /*   By: vmiachko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 14:23:16 by vmiachko          #+#    #+#             */
-/*   Updated: 2018/05/20 18:26:46 by vmiachko         ###   ########.fr       */
+/*   Updated: 2018/05/25 11:41:32 by vmiachko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int			get_input(t_union *un)
 			}
 		if (!check_input(un, str))
 		{
-			ft_printf("ERROR\n");
+			return (0);
 			break ;	
 		}
 		if (!un->container)
@@ -100,7 +100,6 @@ int			get_input(t_union *un)
 			container_push_back(un->container, str);
 		free(str);
 	}
-	ft_printf(RED"OKi\n"RESET);	
 	if (un->flag.start && un->flag.end && un->flag.ants && un->flag.links)
 		return (1);
 	return (0);
