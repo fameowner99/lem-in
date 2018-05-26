@@ -6,15 +6,15 @@
 /*   By: vmiachko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:02:03 by vmiachko          #+#    #+#             */
-/*   Updated: 2018/05/25 15:04:08 by vmiachko         ###   ########.fr       */
+/*   Updated: 2018/05/26 16:07:09 by vmiachko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-t_rooms		*rooms_list_new(t_union *un, char *name, int x, int y)
+t_rooms			*rooms_list_new(t_union *un, char *name, int x, int y)
 {
-	t_rooms	*new;
+	t_rooms		*new;
 
 	new = (t_rooms *)malloc(sizeof(t_rooms));
 	new->name = (char *)ft_memalloc(ft_strlen(name) + 1);
@@ -40,15 +40,15 @@ t_rooms		*rooms_list_new(t_union *un, char *name, int x, int y)
 	return (new);
 }
 
-void		rooms_list_push_back(t_union *un, char *name, int x, int y)
+void			rooms_list_push_back(t_union *un, char *name, int x, int y)
 {
-	t_rooms	*new;
-	t_rooms	*tmp;
+	t_rooms		*new;
+	t_rooms		*tmp;
 
 	tmp = un->room;
 	while (tmp->next)
 		tmp = tmp->next;
-	new = rooms_list_new(un,name, x, y);
+	new = rooms_list_new(un, name, x, y);
 	tmp->next = new;
 }
 

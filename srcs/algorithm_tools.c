@@ -6,19 +6,19 @@
 /*   By: vmiachko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 15:29:06 by vmiachko          #+#    #+#             */
-/*   Updated: 2018/05/24 19:49:48 by vmiachko         ###   ########.fr       */
+/*   Updated: 2018/05/26 16:01:02 by vmiachko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	set_lvl(t_union *un)
+void		set_lvl(t_union *un)
 {
 	t_rooms	*tmp;
 
 	tmp = un->room;
 	while (tmp)
-	{	
+	{
 		tmp->lvl = MAX_INT;
 		if (tmp->start)
 			tmp->lvl = 0;

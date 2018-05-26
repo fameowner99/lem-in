@@ -2,7 +2,7 @@ NAME = lem-in
 
 CC = gcc
 
-FLAGS = 
+FLAGS = -Wall -Wextra -Werror 
 
 RM = rm -f
 

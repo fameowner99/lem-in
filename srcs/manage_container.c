@@ -6,7 +6,7 @@
 /*   By: vmiachko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 15:40:58 by vmiachko          #+#    #+#             */
-/*   Updated: 2018/05/25 12:02:32 by vmiachko         ###   ########.fr       */
+/*   Updated: 2018/05/26 16:05:36 by vmiachko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,16 @@ void				container_push_back(t_container *head, char *str)
 	tmp->next = new;
 }
 
-void				clear_container(t_container *head)
+void				clear_container(t_union *un)
 {
 	t_container		*tmp;
 
-	while (head)
+	while (un->container)
 	{
-		tmp = head->next;
-		free(head->str);
-		head->next = NULL;
-		free(head);
-		head = tmp;
+		tmp = un->container->next;
+		free(un->container->str);
+		free(un->container);
+		un->container = tmp;
 	}
 }
 

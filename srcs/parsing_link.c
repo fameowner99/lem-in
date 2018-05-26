@@ -6,7 +6,7 @@
 /*   By: vmiachko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 17:47:45 by vmiachko          #+#    #+#             */
-/*   Updated: 2018/05/19 19:17:42 by vmiachko         ###   ########.fr       */
+/*   Updated: 2018/05/26 16:39:36 by vmiachko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	connect_rooms(t_union *un, char *r1, char *r2)
 	t_rooms	*room2;
 
 	room = un->room;
-		while (room)
+	while (room)
 	{
 		if (!ft_strcmp(room->name, r1))
 			room1 = room;
@@ -43,21 +43,15 @@ static void	connect_rooms(t_union *un, char *r1, char *r2)
 	}
 	if (!room1->link)
 		room1->link = links_list_new(room2);
-	else
-		{
-			if (check_if_exist(room1->link, room2))
-				links_list_push_back(room1->link, room2);
-		}
+	else if (check_if_exist(room1->link, room2))
+		links_list_push_back(room1->link, room2);
 	if (!room2->link)
 		room2->link = links_list_new(room1);
-	else
-		{
-			if (check_if_exist(room2->link, room1))
-				links_list_push_back(room2->link, room1);
-		}
+	else if (check_if_exist(room2->link, room1))
+		links_list_push_back(room2->link, room1);
 }
 
-static int split(t_union *un, char *str)
+static int	split(t_union *un, char *str)
 {
 	char	**arr;
 	int		count;
@@ -66,7 +60,7 @@ static int split(t_union *un, char *str)
 	count = 0;
 	room = un->room;
 	arr = ft_strsplit(str, '-');
-	if (!ft_strcmp(arr[0],arr[1]))
+	if (!ft_strcmp(arr[0], arr[1]))
 		return (0);
 	while (room)
 	{
@@ -76,7 +70,6 @@ static int split(t_union *un, char *str)
 			++count;
 		room = room->next;
 	}
-
 	if (count != 2)
 	{
 		ft_free_2d((void **)arr);
@@ -87,10 +80,10 @@ static int split(t_union *un, char *str)
 	return (1);
 }
 
-int		is_link(t_union *un, char *str)
+int			is_link(t_union *un, char *str)
 {
-	int	i;
-	int	count;
+	int		i;
+	int		count;
 
 	i = 0;
 	count = 0;
@@ -100,7 +93,7 @@ int		is_link(t_union *un, char *str)
 			++count;
 		++i;
 	}
-	if (count == 1)
+	if (count == 1 && ft_strlen(str) >= 3)
 		return (split(un, str));
 	return (0);
 }

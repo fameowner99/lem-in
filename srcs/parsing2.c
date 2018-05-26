@@ -6,13 +6,13 @@
 /*   By: vmiachko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 17:49:51 by vmiachko          #+#    #+#             */
-/*   Updated: 2018/05/20 12:54:15 by vmiachko         ###   ########.fr       */
+/*   Updated: 2018/05/26 16:14:00 by vmiachko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int			is_number(char	*str)
+int			is_number(char *str)
 {
 	int		i;
 
@@ -46,7 +46,7 @@ int			is_room(char *str)
 	}
 	if (wrd == 3 && space == 2)
 	{
-		arr = ft_strsplit(str, ' ');	
+		arr = ft_strsplit(str, ' ');
 		if (arr[1] && arr[2] && is_number(arr[1]) && is_number(arr[2]) &&
 			is_correct_name(str))
 		{
@@ -64,18 +64,18 @@ int			is_start_end(char *str, t_union *un)
 		un->flag.start = 1;
 		return (1);
 	}
-	else if (!ft_strcmp(str, "##end") && un->flag.start != 1 && un->flag.end == 0 )
+	else if (!ft_strcmp(str, "##end") &&
+		un->flag.start != 1 && un->flag.end == 0)
 	{
 		un->flag.end = 1;
 		return (1);
 	}
 	return (0);
-		
 }
 
-int		is_correct_name(char *str)
+int			is_correct_name(char *str)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	if (str[0] == 'L' || str[0] == '#')

@@ -6,7 +6,7 @@
 /*   By: vmiachko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 13:35:32 by vmiachko          #+#    #+#             */
-/*   Updated: 2018/05/25 17:20:16 by vmiachko         ###   ########.fr       */
+/*   Updated: 2018/05/26 15:13:46 by vmiachko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,14 @@ void					lem_in();
 int						get_input(t_union *un);
 t_container				*container_new(char *str);
 void					container_push_back(t_container *head, char *str);
-void					clear_container(t_container *head);
+void					clear_container(t_union *un);
 void					set_flag(t_union *un);
 t_rooms					*rooms_list_new(t_union *un, char *name, int x, int y);
 t_ways					*ways_list_new(t_rooms *room);
 void					ways_list_push_back(t_ways *head, t_rooms *room);
 t_ways					*ways_clear_last_node(t_ways *head);
-void					rooms_list_push_back(t_union *un, char *name, int x, int y);
+void					rooms_list_push_back(t_union *un,
+					char *name, int x, int y);
 t_links					*links_list_new(t_rooms *room);
 void					links_list_push_back(t_links *head, t_rooms *room);
 int						is_link(t_union *un, char *str);
@@ -115,7 +116,7 @@ int						is_correct_name(char *str);
 t_rooms					*find_start_room(t_rooms *room);
 void					set_graph_level(t_rooms	*start, t_union *un);
 void					set_lvl(t_union *un);
-void					algorithm(t_union *un);
+void					algorithm(t_union *un, t_ways *q_tmp, t_ways *way);
 t_rooms					*find_end_room(t_rooms *room);
 t_ways					*ways_list_push_front(t_ways *head, t_rooms *room);
 void					all_ways_list_push_back(t_all_ways *head, t_ways *way);
@@ -127,5 +128,7 @@ void					set_ants(t_union *un);
 void					set_link_ant(t_union *un);
 int						check_finish(t_union un);
 void					clear_lst_ways(t_ways *way);
+void					clear_rooms_links(t_union *un);
+void					clear_all_ways(t_union *un);
 
 #endif
